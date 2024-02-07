@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .bdy{
+            height: 600px;
+            width: 500px;
+            border: 2px solid black;
+            border-radius: 25px;
+            background-color: blue;
+            box-sizing: border-box;
+        }
+
+        .login{
+            height: 300px;
+            width: 200px;
+            border-radius: 20px 20px 20px 0;
+            margin: auto;
+            text-align: center;
+            background-color: whitesmoke;
+            box-sizing: border-box;
+        }
+
+        .logiput{
+            padding: 10px;
+            background-color: lightgrey;
+            border: none;
+            margin: 2px;
+        }
+
+        .loginbut{
+            width: 190px;
+            padding: 10px;
+            background-color: blue;
+            margin-bottom: 0px;
+            border: none;
+            margin-top: 7px;
+            font-size: 15px;
+            color: white;
+        }
+
+        .createAct{
+            height: 500px;
+            width: 200px;
+            box-sizing: inherit;
+            border-radius: 20px 20px 20px 0;
+            margin: auto;
+            text-align: center;
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+        <Main class="bdy">
+
+            <div class="login">
+                <h2>Login to your account</h2>
+
+                <span>Email or Phone Number<input class="logiput" type="" id="email"></span>
+                <span>Password<input class="logiput" type="password" id="password"></span>
+
+                <button class="loginbut" onclick="LogInNow()">LOG IN</button>
+
+                <h4> <a href="prjctCreatAct.html" style="color: black;">Don't have an account? Register</a></h4>
+            </div>
+
+
+
+        </Main>
+
+
+        <main style="display: none;">
+
+            <form>
+
+            </form>
+
+        </main>
+
+
+
+        <script src="prjct.js"></script>
+
+        <script>
+            
+
+            let loginPasswd = document.getElementById("password")
+            let loginEmail = document.getElementById("email")
+
+            let storedDashData = JSON.parse(localStorage.getItem("RegUsers")) || []
+                console.log(storedDashData)
+
+            function LogInNow(){
+
+                let loginPasswdvalue = loginPasswd.value
+                let loginEmailvalue = loginEmail.value
+            
+               let users = storedDashData.find(user => user.email12 === loginEmailvalue || user.phone === loginEmailvalue)
+            
+
+                if(users){
+                    
+                    if(users.Passwd === loginPasswdvalue){
+
+                    let loginUserName = JSON.parse(localStorage.getItem("loginUserName")) || []
+
+                        
+                    localStorage.setItem("loginUserName", JSON.stringify(users))
+
+                        window.location.href = "prjctDashbd.html" 
+
+                
+                    } else {
+                    alert("Incorrect passsword. Please try again")
+                }
+            } else {
+                alert("User not found. Please check your email/phone or register a new account.")
+            }
+
+        }
+        </script>
+    
+</body>
+</html>
